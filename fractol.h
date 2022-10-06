@@ -10,7 +10,7 @@
 
 typedef struct s_mlx
 {
-    char    *name;
+    char    *fractal;
     void    *mlx_ptr;
     void    *win_ptr;
     void    *img_ptr;
