@@ -12,7 +12,7 @@
 
 #include "fractol.h"
 
-void	set_name(t_mlx d)
+void	set_name(t_mlx *d)
 {
 	if (d->fractal == 1)
 		d->name = "Julia";
@@ -23,19 +23,19 @@ void	set_name(t_mlx d)
 	return ;
 }
 
-int	set_up_win(t_mlx d)
+int	set_up_win(t_mlx *d)
 {
-	set_name(d);
+	set_name(＆d);
 	d->mlx_ptr = mlx_init(void);
 	if (!d->mlx_ptr)
 		return (0);
-	d->win_ptr = mlx_new_window(d->mlx_ptr, WIN_X, WIN_Y, d->name);
+	d->win_ptr = mlx_new_window(d->mlx_ptr, WIN_X, WIN_Y, &d->name);
 	if (!d->win_ptr)
 		return (0);
-	d->img_ptr = mlx_new_image(d->mlx_ptr, d->win_ptr);
+	d->img_ptr = mlx_new_image(d->mlx_ptr, WIN_X, WIN_Y);
 	if (!d->img_ptr)
 		return (0);
-	d->addr = mlx_get_data_addr(d->img_ptr);
+	d->addr = mlx_get_data_addr(d->img_ptr, &d->bpp, &d->line_len, &d->endian);
 	if (!d->addr)
 		return (0);
 	mlx_loop(d->mlx_ptr);

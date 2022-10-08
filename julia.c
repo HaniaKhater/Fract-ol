@@ -11,3 +11,51 @@
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+int	julia(double x, double y, t_mlx *d)
+{
+	int		iter;
+	double	z_re;
+	double	z_im;
+	double	tmp;
+
+	iter = 1;
+	z_re = x;
+	z_im = y;
+	while (iter < ITER_MAX)
+	{
+		tmp = z_re;
+		z_re = (z_re * z_re - z_im * z_im) - 0.835 + d->julia_x_var;
+		z_im = (2 * tmp + z_im) - 0.2321 + d->julia_y_var;
+		if (z_re * z_re + z_im * z_im > 5)
+		{
+			custom_pixel(d, d->count_x, d->count_y, (d->color + iter * 0x00000011));
+			return (0);
+		}
+		iter++;
+	}
+	custom_pixel(d, d->count_x, d->count_y, 0x00000000);
+	return (0);
+}
+
+int		julia_pp(t_mlx *d)
+{
+	double	x;
+	double	y;
+
+	d->count_x = 0;
+	d->count_y = 0;
+	mlx_clear_window(d->mlx_ptr, d->win_ptr);
+	while (d->count_x < WIN_X)
+	{
+		while (d->count_y < WIN_Y)
+		{
+			x = d->xmin + (d->count_x * (d->xmax - d->xmin) / WIN_X);
+			y = d->ymin + (d->count_y * (d->ymax - d->ymin) / WIN_Y);
+		}
+		d->count_y = 0;
+		d->count_x++;
+	}
+	mlx_put_image_to_window(d->mlx_ptr, d->win_ptr, d->img_ptr, 0, 0);
+	return (1);
+}
