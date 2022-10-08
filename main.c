@@ -25,7 +25,12 @@ int	main(int ac, char **av)
 			d->fractal = 2;
 		else if (!ft_strcmp(av[1], "?????"))
 			d->fractal = 3;
-		check_fractal(d, av);
+		else
+		{
+			print_av_list
+			return (0);
+		}
+		set_up_win(d);
 		fractol(d);
 	}
 	else

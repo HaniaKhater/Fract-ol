@@ -13,6 +13,11 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
+# define WIN_X	1000
+# define WIN_Y	1000
+// 0xFF1B
+# define ESC	0x001B
+
 // redefine path at 42
 # include "mlx.h"
 # include <unistd.h>
@@ -20,9 +25,10 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-typedef struct t]s_mlx
+typedef struct s_mlx
 {
-	char	*fractal;
+	char	*name;
+	int		fractal;
 	void	*mlx_ptr;
 	void	*win_ptr;
 	void	*img_ptr;
