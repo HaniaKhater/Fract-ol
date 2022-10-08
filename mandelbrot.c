@@ -10,4 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "fractol.h"
 
+int	mandelbrot(t_mlx d)
+{
+	put_pixel(d);
+	function(d);
+	iterate(d);
+}

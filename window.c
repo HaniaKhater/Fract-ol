@@ -10,10 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "fractol.h"
+#include "fractol.h"
 
-int		set_up_win(t_mlx d)
+int	set_up_win(t_mlx d)
 {
 	d->mlx_ptr = mlx_init(void);
-	d->win_ptr = mlx_win
+	d->win_ptr = mlx_new_window(d->mlx_ptr);
+	d->img_ptr = mlx_new_image(d->mlx_ptr, d->win_ptr);
+	d->addr = mlx_get_data_addr(d->img_ptr);
+	mlx_loop(d->mlx_ptr);
 }

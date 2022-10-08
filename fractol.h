@@ -20,19 +20,19 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-typedef struct s_mlx
+typedef struct t]s_mlx
 {
-    char    *fractal;
-    void    *mlx_ptr;
-    void    *win_ptr;
-    void    *img_ptr;
-    char    *addr;
-    int     line_len;
-    int     bpp;
-    int     endian;
-}
+	char	*fractal;
+	void	*mlx_ptr;
+	void	*win_ptr;
+	void	*img_ptr;
+	char	*addr;
+	int		line_len;
+	int		bpp;
+	int		endian;
+} t_mlx
 
-int     ft_strcmp(char *s1, char*s2);
-void    print_av_list(void);
+int		ft_strcmp(char *s1, char*s2);
+void	print_av_list(void);
 
 #endif
