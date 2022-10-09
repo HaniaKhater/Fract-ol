@@ -25,7 +25,7 @@ void	set_name(t_mlx *d)
 
 int	set_up_win(t_mlx *d)
 {
-	set_name(＆d);
+	set_name(d);
 	d->mlx_ptr = mlx_init(void);
 	if (!d->mlx_ptr)
 		return (0);

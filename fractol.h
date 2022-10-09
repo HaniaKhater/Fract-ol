@@ -13,13 +13,15 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# define WIN_X	1100
-# define WIN_Y	1100
-# define MIN_X	-3
-# define ESC	0xFF1B
+# define WIN_X		1100
+# define WIN_Y		1100
+# define MIN_X		-3
+# define ESC		0xFF1B
+# define CLR_VAR	0x00000011
+# define ITER_MAX	200
 
 // redefine path at 42
-# include "mlx.h"
+# include "./minilibx-linux/mlx.h"
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -40,8 +42,8 @@ typedef struct s_mlx
 	int		xmax;
 	int		ymin;
 	int		ymax;
-	int		count_x;
-	int		count_y;
+	int		done_x;
+	int		done_y;
 } t_mlx
 
 int		ft_strcmp(char *s1, char*s2);
