@@ -18,25 +18,35 @@ RM 		=	rm -rf
 
 NAME	=	fractol
 
+MLX_F	=	-lXext -lm -lX11 -lz
 
-MFLAGS	=	-lXext -lm -lX11 -lz
-MLX_DIR	=	./minilibx-linux
-MLX		=	$(addprefix $(MLX_DIR)/, libmlx.a)	
+MLX_D	=	./minilibx-linux
 
+MLX		=	$(addprefix $(MLX_D)/, libmlx.a)	
 
-INC		=	fractol.h
+FILES	=	events \
+	fractals \
+	main \
+	messages \
+	window \
 
-SRCS	=	./*.c
+INCS_D	=	./incs
 
-OBJS 	=	${SRCS:.c=.o}
+SRCS_D	=	./srcs
 
-.c.o:
-		${CC} ${CFLAGS} -c $< -o $(<:.c=.o)
+SRCS	=	$(addprefix $(SRCS_D)/, $(addsuffix .c, $(FILES)))
+OBJS 	=	$(addprefix $(SRCS_D)/, $(addsuffix .o, $(FILES)))
 
-${NAME}:	$(OBJS)
-				$(CC) $(FLAGS) $(OBJS) -o $(NAME) -I$(INC)
+.c.o:	$(SRCS) $(INCS_D)
+	${CC} ${CFLAGS} -c $< -o $@ -I$(INCS_D)
 
 all:		${NAME}
+
+${NAME}:	$(MLX) $(OBJS)
+				$(CC) $^ -o $@ -I$(INCS_D) -lmlx -L$(MLX_D) $(MLX_F)
+
+$(MLX):
+	make -C $(MLX_D)
 
 clean:
 				${RM} $(OBJS)

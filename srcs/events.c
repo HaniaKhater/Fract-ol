@@ -22,6 +22,8 @@ int	trigger(t_mlx *d, int key)
 {
 	if (key == ESC)
 		ft_quit();
+	if (key == SPC)
+		d->color += 0x00abc123; //test others
 	if (key == Q)
 		d->julia_x_var += 0.1;
 	if (key == W)
@@ -30,7 +32,8 @@ int	trigger(t_mlx *d, int key)
 		d->julia_y_var += 0.1;
 	if (key == S)
 		d->julia_y_var -= 0.1;
-// redraw (recylcle loop pp & reorganize flow with a flag)
+	fractol(d, 1);
+	return (0);
 }
 
 int	zoom(t_mlx *d, int key, int x, int y)
@@ -54,6 +57,6 @@ int	zoom(t_mlx *d, int key, int x, int y)
 		d->ymin = (d->ymin - (ZOOM_VAR * scale_y * (WIN_Y - y)));
 		d->ymax = (d->ymax + (ZOOM_VAR * scale_y * y));
 	}
-	// REDRAW
+	fractol(d, 1);
 	return (0);
 }

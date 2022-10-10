@@ -61,7 +61,15 @@ typedef struct s_mlx
 
 int		ft_strcmp(char *s1, char*s2);
 void	print_av_list(void);
-int		ft_quit(void);
 int		set_up_win(t_mlx *d);
+void	fractol(t_mlx *d, int update);
+void	draw(t_mlx *d);
+void	loop_pp(t_mlx *d);
+int		julia_pp(t_mlx *d, double r, double i);
+int		mandelbrot_pp(t_mlx *d, double r, double i);
+void	custom_pixel(t_mlx *mlx, int x, int y, int color);
+int		ft_quit(void);
+int		trigger(t_mlx *d, int key);
+int		zoom(t_mlx *d, int key, int x, int y);
 
 #endif

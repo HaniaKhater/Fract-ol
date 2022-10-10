@@ -12,26 +12,31 @@
 
 #include "../incs/fractol.h"
 
-int	main(int ac, char **av)
+void	fractol(t_mlx *d, int update)
 {
-	t_mlx	*d;
+	if (!update)
+		draw(d);
+	else
+		loop_pp(d);
+}
+
+int		main(int ac, char **av)
+{
+	t_mlx	d;
 
 	if (ac == 2)
 	{
 		if (!ft_strcmp(av[1], "julia") || !ft_strcmp(av[1], "Julia"))
-			d->fractal = 1;
+			d.fractal = 1;
 		else if (!ft_strcmp(av[1], "mandelbrot")
 			|| !ft_strcmp(av[1], "Mandelbrot"))
-			d->fractal = 2;
-		else if (!ft_strcmp(av[1], "?????"))
-			d->fractal = 3;
+			d.fractal = 2;
+		//else if (!ft_strcmp(av[1], "Burning_ship") || !ft_strcmp(av[1], "burning_ship"))
+		//	d.fractal = 3;
+		if (d.fractal == 1 || d.fractal == 2)
+			fractol((void *)&d, 0);
 		else
-		{
 			print_av_list();
-			ft_quit();
-		}
-		set_up_win(d);
-		fractol(d);
 	}
 	else
 	{
