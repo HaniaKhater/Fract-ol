@@ -15,12 +15,22 @@
 
 # define WIN_X		1100
 # define WIN_Y		1100
-# define MIN_X		-3
+# define MIN_X		-2
+# define MAX_X		2
+# define MIN_Y		-2
+# define MAX_Y		2
+# define ZOOM_VAR	0.25
+# define ZOOM_IN	4
+# define ZOOM_OUT	5
 # define ESC		0xFF1B
+# define Q			0x71
+# define W			0x77
+# define A			0x61
+# define S			0x73
+# define SPC		0x20
 # define CLR_VAR	0x00000011
 # define ITER_MAX	200
 
-// redefine path at 42
 # include "./minilibx-linux/mlx.h"
 # include <unistd.h>
 # include <stdio.h>
@@ -44,9 +54,13 @@ typedef struct s_mlx
 	int		ymax;
 	int		done_x;
 	int		done_y;
-} t_mlx
+	int		color;
+	int		julia_x_var;
+	int		julia_y_var;
+} t_mlx;
 
 int		ft_strcmp(char *s1, char*s2);
 void	print_av_list(void);
+int		set_up_win(t_mlx *d);
 
 #endif
