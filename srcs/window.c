@@ -12,24 +12,23 @@
 
 #include "../incs/fractol.h"
 
-void	set_name(t_mlx *d)
+char	*find_name(t_mlx *d)
 {
 	if (d->fractal == 1)
-		d->name = "Julia";
+		return("Julia");
 	else if (d->fractal == 2)
-		d->name = "Mandelbrot";
+		return("Mandelbrot");
 	//else if (d->fractal == 3)
 	//	d->name = "Burning ship";
-	return ;
+	return (NULL);
 }
 
-int	set_up_win(t_mlx *d)
+int 	set_up_win(t_mlx *d)
 {
-	set_name(d);
 	d->mlx_ptr = mlx_init();
 	if (!d->mlx_ptr)
 		return (0);
-	d->win_ptr = mlx_new_window(d->mlx_ptr, WIN_X, WIN_Y, d->name);
+	d->win_ptr = mlx_new_window(d->mlx_ptr, WIN_X, WIN_Y, find_name(d));
 	if (!d->win_ptr)
 		return (0);
 	d->img_ptr = mlx_new_image(d->mlx_ptr, WIN_X, WIN_Y);
@@ -59,25 +58,27 @@ void	custom_pixel(t_mlx *mlx, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	loop_pp(t_mlx *d)
+int	loop_pp(t_mlx *d)
 {
 	double	r;
 	double	i;
 
 	d->done_x = 0;
 	d->done_y = 0;
-	mlx_clear_window(d->mlx_ptr, d->win_ptr);
-	while (d->done_x < WIN_X)
+	//mlx_clear_window(d->mlx_ptr, d->win_ptr);
+	while (d->done_y < WIN_Y)
 	{
-		while (d->done_y < WIN_Y)
+		while (d->done_x < WIN_X)
 		{
 			r = d->xmin + (d->done_x * (d->xmax - d->xmin) / WIN_X);
 			i = d->ymin + (d->done_y * (d->ymax - d->ymin) / WIN_Y);
 			fractal_set(d, r, i);
-			d->done_y++;
+			d->done_x++;
 		}
-		d->done_y = 0;
-		d->done_x++;
+		d->done_x = 0;
+		d->done_y++;
 	}
+	ft_putstr("rows & columns done!?");
 	mlx_put_image_to_window(d->mlx_ptr, d->win_ptr, d->img_ptr, 0, 0);
+	return (1);
 }

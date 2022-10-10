@@ -13,8 +13,8 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# define WIN_X		1100
-# define WIN_Y		1100
+# define WIN_X		800
+# define WIN_Y		800
 # define MIN_X		-2
 # define MAX_X		2
 # define MIN_Y		-2
@@ -59,12 +59,14 @@ typedef struct s_mlx
 	int		julia_y_var;
 } t_mlx;
 
+void	ft_putstr(char *str);
+
 int		ft_strcmp(char *s1, char*s2);
 void	print_av_list(void);
 int		set_up_win(t_mlx *d);
 void	fractol(t_mlx *d, int update);
 void	draw(t_mlx *d);
-void	loop_pp(t_mlx *d);
+int		loop_pp(t_mlx *d);
 int		julia_pp(t_mlx *d, double r, double i);
 int		mandelbrot_pp(t_mlx *d, double r, double i);
 void	custom_pixel(t_mlx *mlx, int x, int y, int color);

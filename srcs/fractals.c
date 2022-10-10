@@ -38,24 +38,6 @@ int	julia_pp(t_mlx *d, double r, double i)
 	return (0);
 }
 
-void	draw(t_mlx *d)
-{
-	d->color = 0;
-	d->julia_x_var = 0;
-	d->julia_y_var = 0;
-	d->xmin = MIN_X;
-	d->xmax = MAX_X;
-	d->ymin = MIN_Y;
-	d->ymax = MAX_Y;
-	if(!set_up_win(d))
-		return ;
-	loop_pp(d);
-	mlx_hook(d->win_ptr, 17, 2, ft_quit, (void *)0);
-	mlx_mouse_hook(d->win_ptr, zoom, (void *)&d);
-	mlx_key_hook(d->win_ptr, trigger, (void *)&d);
-	mlx_loop(d->mlx_ptr);
-}
-
 int	mandelbrot_pp(t_mlx *d, double r, double i)
 {
 	int		iter;
@@ -80,4 +62,22 @@ int	mandelbrot_pp(t_mlx *d, double r, double i)
 	}
 	custom_pixel(d, d->done_x, d->done_y, 0x00000000);
 	return (0);
+}
+
+void	draw(t_mlx *d)
+{
+	d->color = 0;
+	d->julia_x_var = 0;
+	d->julia_y_var = 0;
+	d->xmin = MIN_X;
+	d->xmax = MAX_X;
+	d->ymin = MIN_Y;
+	d->ymax = MAX_Y;0.
+	if(!set_up_win(d))
+		return ;
+	loop_pp(d);
+	mlx_hook(d->win_ptr, 17, 2, ft_quit, (void *)0);
+	mlx_mouse_hook(d->win_ptr, zoom, (void *)&d);
+	mlx_key_hook(d->win_ptr, trigger, (void *)&d);
+	mlx_loop(d->mlx_ptr);
 }
