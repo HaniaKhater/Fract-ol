@@ -31,7 +31,7 @@
 # define CLR_VAR	0x00000011
 # define ITER_MAX	200
 
-# include "./minilibx-linux/mlx.h"
+# include "../minilibx-linux/mlx.h"
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -61,6 +61,7 @@ typedef struct s_mlx
 
 int		ft_strcmp(char *s1, char*s2);
 void	print_av_list(void);
+int		ft_quit(void);
 int		set_up_win(t_mlx *d);
 
 #endif

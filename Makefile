@@ -14,11 +14,15 @@ CC 		=	cc
 
 CFLAGS	=	-Wall -Werror -Wextra
 
-MFLAGS	=	-lXext -lm -lX11 -lz
-
 RM 		=	rm -rf
 
 NAME	=	fractol
+
+
+MFLAGS	=	-lXext -lm -lX11 -lz
+MLX_DIR	=	./minilibx-linux
+MLX		=	$(addprefix $(MLX_DIR)/, libmlx.a)	
+
 
 INC		=	fractol.h
 

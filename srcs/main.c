@@ -10,15 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../incs/fractol.h"
 
 int	main(int ac, char **av)
 {
-	t_mlx	d;
+	t_mlx	*d;
 
 	if (ac == 2)
 	{
-		if (!ft_strcmp(av[1], "julia") || !ft_strcmp(argv[1], "Julia"))
+		if (!ft_strcmp(av[1], "julia") || !ft_strcmp(av[1], "Julia"))
 			d->fractal = 1;
 		else if (!ft_strcmp(av[1], "mandelbrot")
 			|| !ft_strcmp(av[1], "Mandelbrot"))
@@ -27,8 +27,8 @@ int	main(int ac, char **av)
 			d->fractal = 3;
 		else
 		{
-			print_av_list
-			return (0);
+			print_av_list();
+			ft_quit();
 		}
 		set_up_win(d);
 		fractol(d);

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../incs/fractol.h"
 
 void	custom_pixel(t_mlx *mlx, int x, int y, int color)
 {
