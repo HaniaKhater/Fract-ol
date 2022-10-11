@@ -12,7 +12,7 @@
 
 CC 		=	cc
 
-CFLAGS	=	-Wall -Werror -Wextra
+CFLAGS	=	-Wall -Werror -Wextra -g
 
 RM 		=	rm -rf
 
@@ -29,6 +29,7 @@ FILES	=	events \
 	main \
 	messages \
 	window \
+	burning_ship \
 
 INCS_D	=	./incs
 

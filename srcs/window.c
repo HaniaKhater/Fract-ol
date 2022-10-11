@@ -18,8 +18,8 @@ char	*find_name(t_mlx *d)
 		return("Julia");
 	else if (d->fractal == 2)
 		return("Mandelbrot");
-	//else if (d->fractal == 3)
-	//	d->name = "Burning ship";
+	else if (d->fractal == 3)
+		d->name = "Burning ship";
 	return (NULL);
 }
 
@@ -46,8 +46,8 @@ void	fractal_set(t_mlx *d, double r, double i)
 		julia_pp(d, r, i);
 	else if (d->fractal == 2)
 		mandelbrot_pp(d, r, i);
-	//else if (d->fractal == 3)
-	//	draw_burning_pp(d, r, i);
+	else if (d->fractal == 3)
+		draw_burning_pp(d, r, i);
 }
 
 void	custom_pixel(t_mlx *mlx, int x, int y, int color)
@@ -65,20 +65,19 @@ int	loop_pp(t_mlx *d)
 
 	d->done_x = 0;
 	d->done_y = 0;
-	//mlx_clear_window(d->mlx_ptr, d->win_ptr);
+	mlx_clear_window(d->mlx_ptr, d->win_ptr);
 	while (d->done_y < WIN_Y)
 	{
 		while (d->done_x < WIN_X)
 		{
 			r = d->xmin + (d->done_x * (d->xmax - d->xmin) / WIN_X);
-			i = d->ymin + (d->done_y * (d->ymax - d->ymin) / WIN_Y);
+			i = d->ymax - (d->done_y * (d->ymax - d->ymin) / WIN_Y);
 			fractal_set(d, r, i);
 			d->done_x++;
 		}
 		d->done_x = 0;
 		d->done_y++;
 	}
-	ft_putstr("rows & columns done!?");
 	mlx_put_image_to_window(d->mlx_ptr, d->win_ptr, d->img_ptr, 0, 0);
 	return (1);
 }

@@ -13,12 +13,12 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# define WIN_X		800
-# define WIN_Y		800
-# define MIN_X		-2
-# define MAX_X		2
-# define MIN_Y		-2
-# define MAX_Y		2
+# define WIN_X		1000
+# define WIN_Y		1000
+# define MIN_X		-2.0
+# define MAX_X		2.0
+# define MIN_Y		-2.0
+# define MAX_Y		2.0
 # define ZOOM_VAR	0.25
 # define ZOOM_IN	4
 # define ZOOM_OUT	5
@@ -28,14 +28,16 @@
 # define A			0x61
 # define S			0x73
 # define SPC		0x20
-# define CLR_VAR	0x00000011
-# define ITER_MAX	200
+# define CLR		0x00001111
+# define CLR_VAR	0x00abc123
+# define ITER_MAX	255
 
 # include "../minilibx-linux/mlx.h"
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <math.h>
 
 typedef struct s_mlx
 {
@@ -60,7 +62,6 @@ typedef struct s_mlx
 } t_mlx;
 
 void	ft_putstr(char *str);
-
 int		ft_strcmp(char *s1, char*s2);
 void	print_av_list(void);
 int		set_up_win(t_mlx *d);
@@ -69,9 +70,10 @@ void	draw(t_mlx *d);
 int		loop_pp(t_mlx *d);
 int		julia_pp(t_mlx *d, double r, double i);
 int		mandelbrot_pp(t_mlx *d, double r, double i);
+int		burning_ship(t_mlx *mlx);
 void	custom_pixel(t_mlx *mlx, int x, int y, int color);
 int		ft_quit(void);
-int		trigger(t_mlx *d, int key);
-int		zoom(t_mlx *d, int key, int x, int y);
+int		trigger(int key, t_mlx *d);
+int		zoom(int key, int x, int y, t_mlx *d);
 
 #endif

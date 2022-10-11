@@ -14,14 +14,19 @@
 
 int	ft_quit(void)
 {
+	ft_putstr("quit");
 	exit(1);
 	return (0);
 }
 
-int	trigger(t_mlx *d, int key)
+int	trigger(int key, t_mlx *d)
 {
 	if (key == ESC)
-		ft_quit();
+	{
+		ft_putstr("ESC quit\n");
+		exit(0);
+		return (0);
+	}
 	if (key == SPC)
 		d->color += 0x00abc123; //test others
 	if (key == Q)
@@ -32,11 +37,13 @@ int	trigger(t_mlx *d, int key)
 		d->julia_y_var += 0.1;
 	if (key == S)
 		d->julia_y_var -= 0.1;
+	ft_putstr("triggered\n");
 	fractol(d, 1);
+	ft_putstr("passed key hook\n");
 	return (0);
 }
 
-int	zoom(t_mlx *d, int key, int x, int y)
+int	zoom(int key, int x, int y, t_mlx *d)
 {
 	float	scale_x;
 	float	scale_y;
@@ -58,5 +65,6 @@ int	zoom(t_mlx *d, int key, int x, int y)
 		d->ymax = (d->ymax + (ZOOM_VAR * scale_y * y));
 	}
 	fractol(d, 1);
+	ft_putstr("zoomed");
 	return (0);
 }

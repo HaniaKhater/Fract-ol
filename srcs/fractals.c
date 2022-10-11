@@ -27,9 +27,9 @@ int	julia_pp(t_mlx *d, double r, double i)
 		tmp = x;
 		x = (x * x - y * y) - 0.835 + d->julia_x_var;
 		y = (2 * tmp + y) - 0.2321 + d->julia_y_var;
-		if (x * x + y * y > 5)
+		if (x * x + y * y > 4)
 		{
-			custom_pixel(d, d->done_x, d->done_y, (d->color + iter * CLR_VAR));
+			custom_pixel(d, d->done_x, d->done_y, (d->color + iter * CLR));
 			return (0);
 		}
 		iter++;
@@ -53,9 +53,9 @@ int	mandelbrot_pp(t_mlx *d, double r, double i)
 		tmp = x;
 		x = (x * x - y * y) + r;
 		y = (2 * tmp + y) + i;
-		if (x * x + y * y > 5)
+		if (x * x + y * y > 6)
 		{
-			custom_pixel(d, d->done_x, d->done_y, (d->color + iter * CLR_VAR));
+			custom_pixel(d, d->done_x, d->done_y, (d->color) + iter * CLR);
 			return (0);
 		}
 		iter++;
@@ -66,16 +66,19 @@ int	mandelbrot_pp(t_mlx *d, double r, double i)
 
 void	draw(t_mlx *d)
 {
-	d->color = 0;
-	d->julia_x_var = 0;
-	d->julia_y_var = 0;
 	d->xmin = MIN_X;
 	d->xmax = MAX_X;
 	d->ymin = MIN_Y;
-	d->ymax = MAX_Y;0.
+	d->ymax = MAX_Y;
 	if(!set_up_win(d))
 		return ;
-	loop_pp(d);
+	d->color = 0;
+	d->julia_x_var = 0;
+	d->julia_y_var = 0;
+	if (d->fractal == 3)
+		burning_ship(d);
+	else
+		loop_pp(d);
 	mlx_hook(d->win_ptr, 17, 2, ft_quit, (void *)0);
 	mlx_mouse_hook(d->win_ptr, zoom, (void *)&d);
 	mlx_key_hook(d->win_ptr, trigger, (void *)&d);

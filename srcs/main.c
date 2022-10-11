@@ -14,7 +14,7 @@
 
 void	fractol(t_mlx *d, int update)
 {
-	if (d->fractal == 1 || d->fractal == 2)
+	if (d->fractal == 1 || d->fractal == 2 || d->fractal == 3)
 	{
 		if (update)
 			loop_pp(d);
@@ -38,8 +38,8 @@ int		main(int ac, char **av)
 		else if (!ft_strcmp(av[1], "mandelbrot")
 			|| !ft_strcmp(av[1], "Mandelbrot"))
 			d.fractal = 2;
-		//else if (!ft_strcmp(av[1], "Burning_ship") || !ft_strcmp(av[1], "burning_ship"))
-		//	d.fractal = 3;
+		else if (!ft_strcmp(av[1], "Burning_ship") || !ft_strcmp(av[1], "burning_ship"))
+			d.fractal = 3;
 		fractol((void *)&d, 0);
 		print_av_list();
 	}
